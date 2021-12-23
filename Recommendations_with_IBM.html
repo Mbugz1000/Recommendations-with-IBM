@@ -14799,33 +14799,11 @@ The top 10 recommendations for user 20 are the following article names:
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">body_list</span> <span class="o">=</span> <span class="n">df_content_recs</span><span class="o">.</span><span class="n">doc_body</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">clean_body</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This method cleans the body text of the articles. It performs the following tasks:</span>
-<span class="sd">        1. Lowers the capitalization</span>
-<span class="sd">        2. Removes punctuation</span>
-<span class="sd">        3. Tokenizes the text</span>
-<span class="sd">        4. Removes stop words</span>
-<span class="sd">        5. Lemmatizes the tokens</span>
-<span class="sd">    </span>
-<span class="sd">    :params body: Body text from the IBM website</span>
-<span class="sd">    :return: Clean tokenized body text</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">body</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    <span class="n">punctuation_removed</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[^a-zA-Z0-9]&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
-    <span class="n">tokenized</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">punctuation_removed</span><span class="p">)</span>
-    <span class="n">no_stop_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokenized</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">)]</span>
-
-    <span class="n">lemmatizer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
-    <span class="n">clean_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">no_stop_words</span><span class="p">]</span>
-    
-    <span class="k">return</span> <span class="n">clean_tokens</span>
-
 <span class="k">def</span> <span class="nf">clean_body_list</span><span class="p">(</span><span class="n">body_list_</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This method cleans the doc_body column using the multiprocessing library</span>
 <span class="sd">    </span>
-<span class="sd">    :params body_list_: This is a list of raw body text</span>
+<span class="sd">    :param body_list_: This is a list of raw body text</span>
 <span class="sd">    :return: List of clean tokenized body texts.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
@@ -15048,9 +15026,9 @@ The top 10 recommendations for user 20 are the following article names:
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This method makes content based recommendations using a similarity matrix created using the Doc2Vec library.</span>
 
-<span class="sd">    :params artcile_id:</span>
-<span class="sd">    :params similarity_mat: Similarity matrix based on the doc_body column</span>
-<span class="sd">    :params df_content_: Dataframe that contains article content data</span>
+<span class="sd">    :param artcile_id:</span>
+<span class="sd">    :param similarity_mat: Similarity matrix based on the doc_body column</span>
+<span class="sd">    :param df_content_: Dataframe that contains article content data</span>
 <span class="sd">    :return: Content based recommendations</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">article_id_list</span> <span class="o">=</span> <span class="n">df_content_</span><span class="o">.</span><span class="n">article_id</span><span class="o">.</span><span class="n">values</span>
@@ -16023,7 +16001,7 @@ The recommender first cleans and tokenizes the doc_body column using an NLP Pipe
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[647]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">call</span>
@@ -16031,6 +16009,26 @@ The recommender first cleans and tokenizes the doc_body column using an NLP Pipe
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[647]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
